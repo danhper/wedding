@@ -1,0 +1,30 @@
+de:
+  info:
+    date: "der 17. Juni 2021"
+    title: "Hochzeit von Ai & Daniel"
+
+  townhall:
+    text: Die offiziale Hochzeitszeremonie findet im Rathaus des 15. Bezirks von Paris statt
+  party:
+    text: Am Abend werden wir eine Party im Le Vauban, einem tollen Restaurant, das meine Familie liebt
+
+  attendance:
+    question: Kommst du?
+    "yes": Ja, natürlich
+    "no": Ich kann leider nicht
+    confirm_yes: Bist du sicher?
+    confirm_no: Kannst du wirklich nicht kommen?
+
+    present: |
+      Vielen Dank für die Bestätigung. Wir freuen uns, dich zu sehen!
+      <small class="text-muted">Wenn etwas passiert, bitte schik uns <a href="mailto:ai-et-daniel@perezmiyuki.wedding">eine E-Mail</a></small>
+
+    absent: |
+      Es tut uns leid, dass du nicht kommen können, aber las uns bald zusammen Bier trinken!
+      <small class="text-muted">Wenn du deine Meinung ändern, bitte schick uns <a href="mailto:ai-et-daniel@perezmiyuki.wedding">eine E-Mail</a></small>
+
+  email:
+    invitation:
+      subject: Einladung zur Hochzeit von Ai und Daniel
+
+  footer: von Ai & Daniel, mit viel ❤️

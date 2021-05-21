@@ -40,7 +40,7 @@ fr:
         Toutes les informations, ainsi qu'un lien pour ton confirmer ta présence
         sont disponibles sur le site ci-dessous.
 
-        <a href="https://perezmiyuki.wedding/?token=%{token}" target="_blank">https://perezmiyuki.wedding/?token=%{token}</a>
+        https://perezmiyuki.wedding/?token=%{token}
 
         On espère te voir le 17 juin,
 

@@ -5,6 +5,6 @@ class InvitationMailer < ApplicationMailer
   def guest_invitation_email
     @user = params[:user]
 
-    mail(to: @user.email, subject: I18n.t('email.invitation.subject'))
+    mail(to: @user.email, subject: @user.email_subject)
   end
 end

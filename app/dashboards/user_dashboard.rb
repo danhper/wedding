@@ -19,6 +19,8 @@ class UserDashboard < Administrate::BaseDashboard
     invite_sent: Field::Boolean,
     greeting: Field::String,
     text: Field::Text,
+    email_subject: Field::String,
+    email_text: Field::Text,
     created_at: Field::DateTime,
     updated_at: Field::DateTime
   }.freeze
@@ -50,6 +52,8 @@ class UserDashboard < Administrate::BaseDashboard
     invite_sent
     greeting
     text
+    email_subject
+    email_text
     created_at
     updated_at
   ].freeze
@@ -66,6 +70,8 @@ class UserDashboard < Administrate::BaseDashboard
     email
     greeting
     text
+    email_subject
+    email_text
   ].freeze
 
   # COLLECTION_FILTERS

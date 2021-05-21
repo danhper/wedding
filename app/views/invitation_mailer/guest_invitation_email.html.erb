@@ -1,6 +1,6 @@
 <div style="font-family: Georgia">
   <%= @user.greeting %>
-  <%= simple_format t("email.invitation.text", token: @user.token) %>
+  <%= auto_link simple_format(@user.email_text) %>
 
   <%= image_tag "ai-dany/2018-engagement-preparty.jpg", style: "width: 400px" %>
 </div>

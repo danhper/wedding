@@ -4,6 +4,7 @@ class User < ApplicationRecord
 
   before_create do
     self.token = generate_token
+    self.email_text = email_text.gsub(/%{token}/, token)
   end
 
   protected

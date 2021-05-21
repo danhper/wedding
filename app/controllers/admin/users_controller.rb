@@ -1,5 +1,6 @@
 module Admin
   class UsersController < Admin::ApplicationController
+    before_action :set_translations, only: %i[new edit create update]
     # Overwrite any of the RESTful controller actions to implement custom behavior
     # For example, you may want to send an email after a foo is updated.
     #
@@ -13,6 +14,30 @@ module Admin
       requested_resource.invite_sent = true
       requested_resource.save!
       redirect_to [namespace, requested_resource], notice: "Email sent to #{requested_resource.email}"
+    end
+
+    protected
+
+    def make_translations(lang)
+      I18n.with_locale(lang) do
+        {
+          text: I18n.t('invitation.text'),
+          email_subject: I18n.t('email.invitation.subject'),
+          email_text: I18n.t('email.invitation.text')
+        }
+      end
+    end
+
+    def set_translations
+      @translations = Hash[I18n.available_locales.map { |lang| [lang, make_translations(lang)] }]
+    end
+
+    def new_resource
+      resource_class.new(
+        text: I18n.t('invitation.text'),
+        email_subject: I18n.t('email.invitation.subject'),
+        email_text: I18n.t('email.invitation.text')
+      )
     end
 
     # Override this method to specify custom lookup behavior.

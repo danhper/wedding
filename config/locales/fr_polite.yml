@@ -22,4 +22,29 @@ fr_polite:
       C'est dommage, mais on espère vous voir bientôt !
       <small class="text-muted">Si vous changez d'avis, <a href="mailto:ai-et-daniel@perezmiyuki.wedding">envoyez-nous nous un email</a></small>
 
+  invitation:
+    text: |
+      Nous avons le plaisir de vous inviter à notre cérémonie de mariage ayant lieu
+      le 17 juin 2021.
+      Malgré le délai relativement court, nous espérons que vous pourrez vous
+      joindre à nous pour fêter cet hereux évènement.
+
+      Dans l'attente de vous voir,
+
+  email:
+    invitation:
+      subject: Mariage de Ai Miyuki & Daniel Perez
+      text: |
+        Nous aimerions vous convier à notre mariage ayant lieu le 17 juin à Paris.
+        Nous espérons que nous pourrons partager ce moment avec vous.
+
+        Vous trouverez toutes les informations nécessaires sur le site ci-dessous.
+        Nous vous prions de nous confirmer votre présence depuis ce même site avant le 4 juin.
+
+        <a href="https://perezmiyuki.wedding/?token=%{token}" target="_blank">https://perezmiyuki.wedding/?token=%{token}</a>
+
+        En espérant vous voir le 17 juin,
+
+        Ai & Daniel
+
   footer: par Ai & Daniel, avec ❤️

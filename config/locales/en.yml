@@ -8,6 +8,15 @@ en:
   party:
     text: We will have an informal party at Le Vauban, a great restaurant close to Les Invalides that my family loves
 
+  invitation:
+    text: |
+      It is our pleasure to invite you to our wedding ceremony on June 17th 2021.
+      We appreciate this is quite short notice, especially given the current situation
+      but we hope that you will be able to celebrate this happy event with us.
+      The details of the event are below.
+
+      Warm regards,
+
   attendance:
     question: Are you coming?
     "yes": I am coming
@@ -30,7 +39,7 @@ en:
         As you might already know, we are getting married in Paris on the 17th of June.
         We would like to invite you to share this special moment with us.
 
-        We would be grateful if you could confirm your attendance from the follwing
+        We would be grateful if you could confirm your attendance from the following
         website, where you will also find the details of the event.
 
         <a href="https://perezmiyuki.wedding/?token=%{token}" target="_blank">https://perezmiyuki.wedding/?token=%{token}</a>

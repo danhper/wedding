@@ -23,6 +23,23 @@ en:
       We're sorry you cannot make it but hope to see you soon.
       <small class="text-muted">Please <a href="mailto:daniel@perez.sh">email us</a> if you change your mind</small>
 
+  email:
+    invitation:
+      subject: Invitation to Ai and Daniel's wedding
+      text: |
+        As you might already know, we are getting married in Paris on the 17th of June.
+        We would like to invite you to share this special moment with us.
+
+        We would be grateful if you could confirm your attendance from the follwing
+        website, where you will also find the details of the event.
+
+        <a href="https://perezmiyuki.wedding/?token=%{token}" target="_blank">https://perezmiyuki.wedding/?token=%{token}</a>
+
+        We hope to see you there!
+
+        With love,
+        Ai & Daniel
+
   footer: by Ai &amp; Daniel, with a lot of ❤️
 
   errors:

@@ -10,6 +10,7 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       t.string :greeting
       t.string :text
       t.string :email
+      t.boolean :invite_sent, default: false, null: false
 
       t.index :token
 

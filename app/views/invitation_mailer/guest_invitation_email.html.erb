@@ -1,0 +1,4 @@
+<div style="width: 80%; margin: auto; font-family: Georgia">
+  <%= @user.greeting %>
+  <%= simple_format t("email.invitation.text", token: @user.token) %>
+</div>

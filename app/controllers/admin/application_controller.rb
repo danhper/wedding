@@ -9,7 +9,7 @@ module Admin
     http_basic_authenticate_with(
       name: ENV.fetch('ADMIN_EMAIL'),
       password: ENV.fetch('ADMIN_PASSWORD')
-    )
+    ) if Rails.env.production?
 
     # Override this value to specify the number of elements to display at a time
     # on index pages. Defaults to 20.

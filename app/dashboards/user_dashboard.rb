@@ -12,12 +12,13 @@ class UserDashboard < Administrate::BaseDashboard
     first_name: Field::String,
     last_name: Field::String,
     email: Field::String,
-    language: Field::Select.with_options(collection: %w[en ja fr]),
-    coming: Field::Select.with_options(collection: %w[pending yes no]),
+    language: Field::Select.with_options(collection: User.languages.keys),
+    attendance: Field::Select.with_options(collection: User.attendances.keys),
+    townhall: Field::Boolean,
     token: Field::String,
     text: Field::Text,
     created_at: Field::DateTime,
-    updated_at: Field::DateTime,
+    updated_at: Field::DateTime
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -40,7 +41,8 @@ class UserDashboard < Administrate::BaseDashboard
     last_name
     email
     language
-    coming
+    attendance
+    townhall
     token
     text
     created_at
@@ -54,6 +56,7 @@ class UserDashboard < Administrate::BaseDashboard
     first_name
     last_name
     language
+    townhall
     email
     text
   ].freeze

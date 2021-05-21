@@ -1,36 +1,31 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
-
 en:
+  info:
+    date: "17th June 2021"
+
   townhall:
-    text: La cerémonie officielle sera tenue à la mairie du 15ème arrondissement.
+    text: The official ceremony will be held in Paris' 15th arrondissement townhall
   party:
-    text: La fête sera célébré au Vauban
+    text: We will have an informal party at Le Vauban, a great restaurant close to Les Invalides that my family loves
+
+  errors:
+    unauthorized:
+      title: Not authorized
+      text: |
+        Hi there,
+
+        For privacy reasons, we are not allowing direct access to this website.
+        If you have been invited, please check your email for a link to access it.
+
+        Best,
+        Ai &amp; Daniel
+
+    unexpected:
+      title: Unexpected error
+      text: |
+        Hi there,
+
+        Some unexpected error happened, Daniel might have been a bit tried and produced sloppy code, we apologise for the trouble.
+        Please <a href="mailto:daniel@perez.sh">email us</a> if you need to contact us.
+
+        Best,
+        Ai &amp; Daniel

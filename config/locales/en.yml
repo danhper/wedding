@@ -1,11 +1,19 @@
 en:
   info:
     date: "17th June 2021"
+    title: "Ai & Daniel's wedding"
 
   townhall:
     text: The official ceremony will be held in Paris' 15th arrondissement townhall
   party:
     text: We will have an informal party at Le Vauban, a great restaurant close to Les Invalides that my family loves
+
+  attendance:
+    question: Are you coming?
+    "yes": I am coming
+    "no": I cannot make it
+    confirm_yes: You are definitely coming?
+    confirm_no: Are you sure you cannot make it?
 
   errors:
     unauthorized:

@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  rescue_from StandardError, with: :unexpected_error
+  rescue_from StandardError, with: :unexpected_error if Rails.env.production?
   rescue_from User::NotAuthorized, with: :deny_access
 
   protected

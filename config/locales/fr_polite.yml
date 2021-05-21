@@ -1,4 +1,4 @@
-fr:
+fr_polite:
   info:
     date: "17 Juin 2021"
     title: "Mariage de Ai & Daniel"
@@ -8,8 +8,8 @@ fr:
     text: La fête sera célébré au Vauban, un restaurant un côté des Invalides que nous apprécions beaucoup.
 
   attendance:
-    question: Est-ce que tu viens?
-    "yes": Bien sûr
-    "no": Malheureusement pas
-    confirm_yes: Tu confirmes bien que tu viens ?
-    confirm_no: Tu est sûr que tu ne peux pas venir ?
+    question: Serez-vous présent ?
+    "yes": J'y serai
+    "no": Je ne peux pas
+    confirm_yes: Vous confirmez votre présence ?
+    confirm_no: Vous confirmez que vous ne pourrez pas venir ?

@@ -57,6 +57,7 @@ class UserDashboard < Administrate::BaseDashboard
     last_name
     language
     townhall
+    attendance
     email
     text
   ].freeze

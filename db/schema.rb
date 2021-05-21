@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2021_05_21_002028) do
     t.integer "attendance", default: 0, null: false
     t.boolean "townhall", default: false, null: false
     t.string "token"
+    t.string "greeting"
     t.string "text"
     t.string "email"
     t.datetime "created_at", precision: 6, null: false

@@ -7,6 +7,7 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       t.integer :attendance, default: 0, null: false
       t.boolean :townhall, default: false, null: false
       t.string :token
+      t.string :greeting
       t.string :text
       t.string :email
 

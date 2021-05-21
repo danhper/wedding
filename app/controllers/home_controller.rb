@@ -15,6 +15,12 @@ class HomeController < ApplicationController
     @images = Dir[Rails.root.join('app/assets/images/ai-dany/*')].map { |v| v.split('/')[-1] }
   end
 
+  def set_attendance
+    @user.attendance = params[:attendance]
+    @user.save
+    redirect_to action: :index, token: @user.token
+  end
+
   private
 
   def require_login

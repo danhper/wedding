@@ -3,5 +3,6 @@
     "erb": "html"
   },
   "editor.formatOnSave": true,
-  "editor.formatOnSaveMode": "file"
+  "editor.formatOnSaveMode": "file",
+  "vscode-erb-beautify.keepBlankLines": 1
 }

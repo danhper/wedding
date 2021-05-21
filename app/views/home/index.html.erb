@@ -1,49 +1,67 @@
 <header class="py-3 bg-image-full" style="background-image: url('<%= image_path("banner.jpg") %>');">
   <div class="text-center my-5">
-    <h1 class="text-white fs-3 fw-border">
-      Ai &amp; Daniel's wedding 💒
+    <h1 class="text-white fw-border display-4">
+      <%= t "info.title" %> 💒
     </h1>
   </div>
 </header>
 <section class="py-3">
   <div class="container my-5">
     <div class="row justify-content-center">
-      <div class="col-lg-6">
-        <h2 class="text-center">Hey XXX!</h2>
-        <p>You are formally invited to our wedding!!</p>
+      <div class="fit-content">
+        <h2 class="text-center"><%= @user.greeting %></h2>
+        <p><%= simple_format @user.text %></p>
+        <p class="text-center">Ai &amp; Daniel</p>
       </div>
     </div>
   </div>
 </section>
+
 <section>
   <div class="container my-3">
     <div class="row justify-content-center">
       <div class="col-lg-8">
         <h2 class="text-center">🎉 <%= t "info.date" %> 🎉</h2>
-        <%= render "event_card", event: @events[:townhall] %>
+        <% if @user.townhall %>
+          <%= render "event_card", event: @events[:townhall] %>
+        <% end %>
+
         <%= render "event_card", event: @events[:party] %>
-        <%# <h4 class="text-center mt-3 font-size-lg">
-          Thank you for confirming your attendance<br>
-          <small class="text-muted">Please <a href="mailto:daniel@perez.sh">email us</a> if you change your mind</small>
-        </h4> %>
+
+        <% case @user.attendance %>
+        <% when "pending" %>
+        <h3 class="text-center mt-3"><%= t "attendance.question" %></h2>
+        <div class="row justify-content-center">
+          <div class="fit-content">
+            <%= form_with(url: attendance_path, method: :post, class: "d-inline-block") do |f| %>
+              <%= f.hidden_field(:token, value: @user.token) %>
+              <%= f.hidden_field(:attendance, value: "absent") %>
+              <%= f.submit t('attendance.no'), class: "d-inline-block btn btn-outline-secondary", data: { confirm: t('attendance.confirm_no') } %>
+            <% end %>
+            <%= form_with(url: attendance_path, method: :post, class: "d-inline-block") do |f| %>
+              <%= f.hidden_field(:token, value: @user.token) %>
+              <%= f.hidden_field(:attendance, value: "present") %>
+              <%= f.submit t('attendance.yes'), class: "btn btn-outline-success d-inline-block mx-3", data: { confirm: t('attendance.confirm_yes') } %>
+            <% end %>
+          </div>
+        </div>
+        <% when "absent" %>
         <h4 class="text-center mt-5 font-size-lg">
           We're sorry you cannot make it but hope to see you soon<br>
           <small class="text-muted">Please <a href="mailto:daniel@perez.sh">email us</a> if you change your mind</small>
         </h4>
-        <%# <h3 class="text-center mt-3">Are you coming?</h2>
-        <div class="row justify-content-center">
-          <div class="col-lg-3 col-6">
-            <a class="btn btn-outline-secondary">I cannot make it</a>
-          </div>
-          <div class="col-lg-3 col-6">
-            <button class="btn btn-outline-success">I am coming</button>
-          </div>
-        </div> %>
-      </div>
+        <% when "present" %>
+        <h4 class="text-center mt-3 font-size-lg">
+          Thank you for confirming your attendance<br>
+          <small class="text-muted">Please <a href="mailto:daniel@perez.sh">email us</a> if you change your mind</small>
+        </h4>
+      <% end %>
     </div>
   </div>
+</div>
 </section>
-<section class="mx-5">
+
+<section class="mx-5 mt-5">
   <div class="photo-carousel glide text-center">
     <div class="glide__track" data-glide-el="track">
       <ul class="glide__slides">

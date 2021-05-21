@@ -12,8 +12,7 @@ User.create(
   language: 'fr',
   townhall: true,
   email: 'daniel@perez.sh',
-  text: 'Hi Daniel,
-  Thank you for coming to our wedding.
-  We are looking forward to seeing you.
-  Ai & Daniel'
+  greeting: 'Hi Daniel',
+  text: 'Thank you for coming to our wedding.
+  We are looking forward to seeing you.'
 )

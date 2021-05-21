@@ -1,24 +1,5 @@
-# README
+# wedding app
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Simple webapp to manage guests and invitations for my wedding with <a href="https://miyuki.ai">Ai</a>.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Live website at <https://perezmiyuki.wedding/>

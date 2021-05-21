@@ -1,0 +1,24 @@
+<div class="card mt-3">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="<%= image_path(event.image) %>" alt="Mairie du 15eme" style="max-width: 100%;">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"><%= event.location %></h5>
+        <h6 class="card-subtitle mb-2 text-muted"><%= event.start_time%> - <%= event.end_time %></h6>
+        <p class="card-text">
+          <%= t event.text_key %>
+        </p>
+        <p class="card-text">
+          <a href="<%= event.map_url %>" style="text-decoration: none" target="_blank" rel="noreferrer">
+            <small class="text-muted">
+              <%= event.address %>
+              <i class="far fa-map"></i>
+            </small>
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

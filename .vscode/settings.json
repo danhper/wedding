@@ -1,0 +1,7 @@
+{
+  "emmet.includeLanguages": {
+    "erb": "html"
+  },
+  "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "file"
+}

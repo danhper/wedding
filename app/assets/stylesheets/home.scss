@@ -1,0 +1,23 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.bg-image-full {
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: center;
+  background-size: cover;
+}
+
+.photo-carousel {
+  img {
+    max-width: 100%;
+    max-height: 350px;
+  }
+
+  .glide__arrow {
+    color: #555555;
+    border: none;
+    box-shadow: none;
+  }
+}

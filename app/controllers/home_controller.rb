@@ -18,6 +18,7 @@ class HomeController < ApplicationController
   def set_attendance
     @user.attendance = params[:attendance]
     @user.save
+    InvitationMailer.with(user: @user).change_status_email.deliver_now
     redirect_to action: :index, token: @user.token
   end
 

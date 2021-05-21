@@ -13,3 +13,13 @@ fr_polite:
     "no": Je ne peux pas
     confirm_yes: Vous confirmez votre présence ?
     confirm_no: Vous confirmez que vous ne pourrez pas venir ?
+
+    present: |
+      Merci pour la confirmation, nous avons hâte de vous voir !
+      <small class="text-muted">En cas de problème, <a href="mailto:daniel@perez.sh">veuillez-nous envoyer un email</a></small>
+
+    absent: |
+      C'est dommage, mais on espère vous voir bientôt !
+      <small class="text-muted">Si vous changez d'avis, <a href="mailto:daniel@perez.sh">envoyez-nous nous un email</a></small>
+
+  footer: par Ai & Daniel, avec ❤️

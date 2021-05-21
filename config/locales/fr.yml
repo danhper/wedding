@@ -13,3 +13,13 @@ fr:
     "no": Malheureusement pas
     confirm_yes: Tu confirmes bien que tu viens ?
     confirm_no: Tu est sûr que tu ne peux pas venir ?
+
+    present: |
+      Merci d'avoir confirmé, on a hâte de te voir !
+      <small class="text-muted">En cas de problème, <a href="mailto:daniel@perez.sh">envoie nous un email</a></small>
+
+    absent: |
+      Dommage, on aurait adoré que tu sois là, mais on se voit bientôt !
+      <small class="text-muted">Si tu changes d'avis, <a href="mailto:daniel@perez.sh">envoie nous un email</a></small>
+
+  footer: par Ai & Daniel, avec ❤️

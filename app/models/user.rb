@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  enum language: %i[en ja fr de]
+  enum language: %i[en ja fr de fr_polite]
   enum attendance: %i[pending absent present]
 
   before_create do

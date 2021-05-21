@@ -17,11 +17,11 @@ en:
 
     present: |
       Thank you for confirming your attendance!
-      <small class="text-muted">Please <a href="mailto:daniel@perez.sh">email us</a> if you change your mind</small>
+      <small class="text-muted">Please <a href="mailto:ai-et-daniel@perezmiyuki.wedding">email us</a> if you change your mind</small>
 
     absent: |
       We're sorry you cannot make it but hope to see you soon.
-      <small class="text-muted">Please <a href="mailto:daniel@perez.sh">email us</a> if you change your mind</small>
+      <small class="text-muted">Please <a href="mailto:ai-et-daniel@perezmiyuki.wedding">email us</a> if you change your mind</small>
 
   email:
     invitation:
@@ -59,8 +59,8 @@ en:
       text: |
         Hi there,
 
-        Some unexpected error happened, Daniel might have been a bit tried and produced sloppy code, we apologise for the trouble.
-        Please <a href="mailto:daniel@perez.sh">email us</a> if you need to contact us.
+        Some unexpected error happened, Daniel might have been a bit tired and produced sloppy code, we apologise for the trouble.
+        Please <a href="mailto:ai-et-daniel@perezmiyuki.wedding">email us</a> if you need to contact us.
 
         Best,
         Ai &amp; Daniel

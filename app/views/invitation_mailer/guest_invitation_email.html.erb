@@ -1,4 +1,6 @@
-<div style="width: 80%; margin: auto; font-family: Georgia">
+<div style="font-family: Georgia">
   <%= @user.greeting %>
   <%= simple_format t("email.invitation.text", token: @user.token) %>
+
+  <%= image_tag "ai-dany/2018-engagement-preparty.jpg", style: "width: 400px" %>
 </div>

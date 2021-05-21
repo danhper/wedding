@@ -16,10 +16,10 @@ fr_polite:
 
     present: |
       Merci pour la confirmation, nous avons hâte de vous voir !
-      <small class="text-muted">En cas de problème, <a href="mailto:daniel@perez.sh">veuillez-nous envoyer un email</a></small>
+      <small class="text-muted">En cas de problème, <a href="mailto:ai-et-daniel@perezmiyuki.wedding">veuillez-nous envoyer un email</a></small>
 
     absent: |
       C'est dommage, mais on espère vous voir bientôt !
-      <small class="text-muted">Si vous changez d'avis, <a href="mailto:daniel@perez.sh">envoyez-nous nous un email</a></small>
+      <small class="text-muted">Si vous changez d'avis, <a href="mailto:ai-et-daniel@perezmiyuki.wedding">envoyez-nous nous un email</a></small>
 
   footer: par Ai & Daniel, avec ❤️

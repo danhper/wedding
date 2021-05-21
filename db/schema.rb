@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2021_05_21_002028) do
     t.string "greeting"
     t.string "text"
     t.string "email"
+    t.boolean "invite_sent", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["token"], name: "index_users_on_token"

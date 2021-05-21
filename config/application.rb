@@ -18,5 +18,7 @@ module Wedding
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # config.asset_host = 'https://perezmiyuki.wedding'
   end
 end

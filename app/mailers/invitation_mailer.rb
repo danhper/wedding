@@ -1,5 +1,5 @@
 class InvitationMailer < ApplicationMailer
-  default from: 'ai-et-daniel@perezmiyuki.wedding'
+  default from: 'Ai & Daniel <ai-et-daniel@perezmiyuki.wedding>'
   layout 'mailer'
 
   def guest_invitation_email

@@ -8,6 +8,13 @@ module Admin
     #   send_foo_updated_email(requested_resource)
     # end
 
+    def send_invitation
+      InvitationMailer.with(user: requested_resource).guest_invitation_email.deliver_now
+      requested_resource.invite_sent = true
+      requested_resource.save!
+      redirect_to [namespace, requested_resource], notice: "Email sent to #{requested_resource.email}"
+    end
+
     # Override this method to specify custom lookup behavior.
     # This will be used to set the resource for the `show`, `edit`, and `update`
     # actions.

@@ -16,6 +16,7 @@ class UserDashboard < Administrate::BaseDashboard
     attendance: Field::Select.with_options(collection: User.attendances.keys),
     townhall: Field::Boolean,
     token: Field::String,
+    greeting: Field::String,
     text: Field::Text,
     created_at: Field::DateTime,
     updated_at: Field::DateTime
@@ -44,6 +45,7 @@ class UserDashboard < Administrate::BaseDashboard
     attendance
     townhall
     token
+    greeting
     text
     created_at
     updated_at
@@ -59,6 +61,7 @@ class UserDashboard < Administrate::BaseDashboard
     townhall
     attendance
     email
+    greeting
     text
   ].freeze
 

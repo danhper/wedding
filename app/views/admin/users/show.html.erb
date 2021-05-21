@@ -24,6 +24,8 @@ as well as a link to its edit page.
   </h1>
 
   <div>
+    <%= link_to("Preview", root_path(token: page.resource.token), class: "button") %>
+
     <%= link_to("Send invitation", [:send_invitation, namespace, page.resource],
                 class: "button", method: "post",
                 data: { confirm: "Send the invitation to #{page.resource.first_name} #{page.resource.last_name} <#{page.resource.email}>?" }) %>

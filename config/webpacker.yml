@@ -35,6 +35,7 @@ default: &default
   extensions:
     - .mjs
     - .js
+    - .jsx
     - .sass
     - .scss
     - .css
@@ -67,10 +68,9 @@ development:
     quiet: false
     pretty: false
     headers:
-      'Access-Control-Allow-Origin': '*'
+      "Access-Control-Allow-Origin": "*"
     watch_options:
-      ignored: '**/node_modules/**'
-
+      ignored: "**/node_modules/**"
 
 test:
   <<: *default

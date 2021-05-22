@@ -1,14 +1,22 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Button, Form, Tab, Tabs } from "react-bootstrap";
 import ReactDOM from "react-dom";
 import Web3Modal from "web3modal";
 
-import FrogImage from "images/minus99.png";
+import erc20ABI from "./erc20.abi.json";
+
+import Minus99FrogImage from "images/minus99.png";
+
+import { createContext } from "react";
+
+import { ethers } from "ethers";
 
 const beneficiary = "0xe397dE579AF8332b61Ef7cB0952c85a7c9403Cdf";
 
+const lowPriceTokens = ["0x73968b9a57c6e53d41345fd57a6e6ae27d6cdb2f"];
+
 const supportedTokens = [
-  { symbol: "ETH", address: "0x0" },
+  { symbol: "ETH", address: "0x0000000000000000000000000000000000000000" },
   { symbol: "DAI", address: "0x6B175474E89094C44Da98b954EedeAC495271d0F" },
   { symbol: "USDC", address: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48" },
   { symbol: "UNI", address: "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984" },
@@ -38,13 +46,27 @@ function getWeb3Modal() {
   });
 }
 
+const EthersContext = createContext<ethers.providers.Provider>(null);
+function useEthers(): ethers.providers.Provider {
+  return useContext(EthersContext);
+}
+
 function SendTokenForm() {
-  const [selected, setSelected] = useState("ETH");
-  const [tokenAddress, setTokenAddress] = useState("0x");
+  const eth = supportedTokens[0];
+  const [selected, setSelected] = useState(eth.symbol);
+  const [tokenAddress, setTokenAddress] = useState(eth.address);
   const [rawValue, setRawValue] = useState("");
   const [value, setValue] = useState(0);
   const [addressError, setAddressError] = useState("");
   const [valueError, setValueError] = useState("");
+  const [decimals, setDecimals] = useState(18);
+  const provider = useEthers();
+
+  const fetchDecimals = async (address: string) => {
+    const ercContract = new ethers.Contract(address, erc20ABI, provider);
+    const result = await ercContract.decimals();
+    setDecimals(result);
+  };
 
   const handleCurrencyChange = (symbol: string) => {
     setSelected(symbol);
@@ -53,11 +75,32 @@ function SendTokenForm() {
       return;
     }
     const { address } = supportedTokens.find((t) => t.symbol === symbol);
+    if (symbol === "ETH") {
+      setDecimals(18);
+    } else {
+      fetchDecimals(address);
+    }
     setTokenAddress(address);
   };
 
-  const handleTokenAddressChange = (address: string) => {
+  const handleTokenAddressChange = async (address: string) => {
     setTokenAddress(address);
+
+    if (address.length === 0) {
+      setAddressError("");
+      return;
+    }
+
+    if (!ethers.utils.isAddress(address)) {
+      setAddressError("This does not look like an Ethereum address");
+    } else {
+      setAddressError("");
+      fetchDecimals(address).catch((e) => {
+        setAddressError(
+          `Could not get number of decimals for ${address}, is it an ERC?`
+        );
+      });
+    }
   };
 
   const handleValueChange = (rawValue: string) => {
@@ -67,19 +110,42 @@ function SendTokenForm() {
       setValueError(
         rawValue.length === 0 ? "" : "This does not look like a number"
       );
-      setValue(0);
     } else {
-      setValue(value);
       setValueError("");
     }
   };
 
   const isFormValid = () => {
-    return valueError.length === 0 && addressError.length === 0 && value > 0;
+    return (
+      valueError.length === 0 &&
+      addressError.length === 0 &&
+      rawValue.length > 0 &&
+      ethers.utils.parseUnits(rawValue, decimals).gt(0) &&
+      ethers.utils.isAddress(tokenAddress)
+    );
   };
 
+  const sendTransaction = async (e) => {
+    e.preventDefault();
+    if (!isFormValid()) {
+      console.error("form was not complete, aborting");
+      return;
+    }
+
+    const value = ethers.utils.parseUnits(rawValue, decimals);
+    if (tokenAddress === eth.address) {
+    } else {
+      const ercContract = new ethers.Contract(tokenAddress, erc20ABI, provider);
+      ercContract.transfer(beneficiary);
+    }
+  };
+
+  const isLowPricedToken = lowPriceTokens.includes(
+    tokenAddress.toLocaleLowerCase()
+  );
+
   return (
-    <Form>
+    <Form onSubmit={sendTransaction}>
       <Form.Group className="mb-3" controlId="currencySelect">
         <Form.Label>Currency to send</Form.Label>
         <Form.Control
@@ -105,7 +171,16 @@ function SendTokenForm() {
             isInvalid={addressError.length > 0}
             onChange={(e) => handleTokenAddressChange(e.target.value)}
           />
+          <Form.Control.Feedback type="invalid">
+            {addressError}
+          </Form.Control.Feedback>
         </Form.Group>
+      ) : null}
+
+      {isLowPricedToken ? (
+        <div className="row">
+          <img src={Minus99FrogImage} alt="nooooooooo" />
+        </div>
       ) : null}
 
       <Form.Group className="mb-3" controlId="amount">
@@ -127,11 +202,11 @@ function SendTokenForm() {
         <Form.Control
           as="textarea"
           rows={4}
-          placeholder="A (preferably) nice messsage"
+          placeholder="Your (preferably nice) messsage"
         />
         <Form.Text className="text-muted">
-          This will only be persisted in my very centralized database, not
-          on-chain
+          This will not be persisted on-chain but in my very centralized
+          database on-chain
         </Form.Text>
       </Form.Group>
       <Button disabled={!isFormValid()} variant="primary" type="submit">
@@ -148,9 +223,6 @@ function EthPot() {
       <SendTokenForm />
 
       <small className="text-muted">
-        {/* Please note that we do not accept StakeDAO tokens&nbsp;
-        <img src={FrogImage} height="40" />
-        <br /> */}
         If you changed your mind on using this dubvious application, our pot
         address is <Beneficiary />
       </small>
@@ -158,9 +230,26 @@ function EthPot() {
   );
 }
 
+function ConnectButton({ handleConnect }: { handleConnect: () => any }) {
+  return (
+    <div className="text-center">
+      <p>
+        If you would rather send funds directly, please feel free to send them
+        to <Beneficiary />
+      </p>
+      <p>
+        Otherwise, go ahead and
+        <br />
+        <Button onClick={handleConnect}>Connect Wallet</Button>
+      </p>
+    </div>
+  );
+}
+
 function EthPotApp() {
   const web3Modal = getWeb3Modal();
-  const [provider, setProvider] = useState();
+  const [provider, setProvider] = useState(null);
+  const [mainNet, setMainNet] = useState(false);
 
   const handleConnect = async () => {
     const provider = await web3Modal.connect();
@@ -180,7 +269,12 @@ function EthPotApp() {
       }
     });
 
+    provider.on("chainChanged", (chainId: string | number) => {
+      setMainNet(chainId === "0x1" || chainId === 1);
+    });
+
     setProvider(provider);
+    setMainNet(provider.chainId === "0x1" || provider.chainId === 1);
   };
 
   if (web3Modal.cachedProvider) {
@@ -189,20 +283,21 @@ function EthPotApp() {
 
   return (
     <>
-      {provider ? (
-        <EthPot />
+      {!provider ? (
+        <ConnectButton handleConnect={handleConnect} />
+      ) : mainNet ? (
+        <EthersContext.Provider
+          value={new ethers.providers.Web3Provider(provider)}
+        >
+          <EthPot />
+        </EthersContext.Provider>
       ) : (
-        <div className="text-center">
-          <p>
-            If you would rather send funds directly, please feel free to send
-            them to <Beneficiary />
-          </p>
-          <p>
-            Otherwise, go ahead and
-            <br />
-            <Button onClick={handleConnect}>Connect Wallet</Button>
-          </p>
-        </div>
+        <p>
+          Please use mainnet! <br />
+          <small className="text-muted" style={{ fontSize: "0.7rem" }}>
+            Otherwise I will have to uninvite you...
+          </small>
+        </p>
       )}
     </>
   );

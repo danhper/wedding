@@ -3,15 +3,13 @@
     "declaration": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
     "lib": ["es6", "dom"],
     "module": "es6",
     "moduleResolution": "node",
-    "baseUrl": ".",
-    "paths": {
-      "*": ["node_modules/*", "app/packs/*"]
-    },
     "sourceMap": true,
     "target": "es5",
+    "jsx": "react",
     "noEmit": true
   },
   "exclude": ["**/*.spec.ts", "node_modules", "vendor", "public"],

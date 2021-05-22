@@ -7,6 +7,9 @@ fr:
   party:
     text: La fête sera célébré au Vauban, un restaurant un côté des Invalides que nous apprécions beaucoup.
 
+  pot:
+    title: Cagnotte de Mariage
+
   attendance:
     question: Est-ce que tu viens?
     "yes": Bien sûr

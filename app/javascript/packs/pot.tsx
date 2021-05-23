@@ -46,8 +46,8 @@ function getWeb3Modal() {
   });
 }
 
-const EthersContext = createContext<ethers.providers.Provider>(null);
-function useEthers(): ethers.providers.Provider {
+const EthersContext = createContext<ethers.providers.JsonRpcSigner>(null);
+function useEthers(): ethers.providers.JsonRpcSigner {
   return useContext(EthersContext);
 }
 
@@ -56,7 +56,6 @@ function SendTokenForm() {
   const [selected, setSelected] = useState(eth.symbol);
   const [tokenAddress, setTokenAddress] = useState(eth.address);
   const [rawValue, setRawValue] = useState("");
-  const [value, setValue] = useState(0);
   const [addressError, setAddressError] = useState("");
   const [valueError, setValueError] = useState("");
   const [decimals, setDecimals] = useState(18);
@@ -134,9 +133,10 @@ function SendTokenForm() {
 
     const value = ethers.utils.parseUnits(rawValue, decimals);
     if (tokenAddress === eth.address) {
+      provider.sendTransaction({ to: beneficiary, value });
     } else {
       const ercContract = new ethers.Contract(tokenAddress, erc20ABI, provider);
-      ercContract.transfer(beneficiary);
+      ercContract.transfer(beneficiary, value);
     }
   };
 
@@ -287,7 +287,7 @@ function EthPotApp() {
         <ConnectButton handleConnect={handleConnect} />
       ) : mainNet ? (
         <EthersContext.Provider
-          value={new ethers.providers.Web3Provider(provider)}
+          value={new ethers.providers.Web3Provider(provider).getSigner()}
         >
           <EthPot />
         </EthersContext.Provider>

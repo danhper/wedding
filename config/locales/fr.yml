@@ -9,6 +9,8 @@ fr:
 
   pot:
     title: Cagnotte de Mariage
+    fiat_text: |
+      Nous organisons un pot de mariage. On espère que tu pourras participer un peu.
 
   attendance:
     question: Est-ce que tu viens?

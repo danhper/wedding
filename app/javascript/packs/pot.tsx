@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Button, Form, Spinner, Tab, Tabs } from "react-bootstrap";
 import ReactDOM from "react-dom";
 import Web3Modal from "web3modal";
+import I18n from "i18n-js/index.js.erb";
 
 import erc20ABI from "./erc20.abi.json";
 
@@ -10,6 +11,12 @@ import Minus99FrogImage from "images/minus99.png";
 import { createContext } from "react";
 
 import { ethers } from "ethers";
+
+declare global {
+  interface Window {
+    locale: string;
+  }
+}
 
 const beneficiary = "0xe397dE579AF8332b61Ef7cB0952c85a7c9403Cdf";
 
@@ -216,11 +223,11 @@ function SendTokenForm() {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           rows={4}
-          placeholder="Your (preferably nice) messsage"
+          placeholder="If you want, your (preferably nice) messsage"
         />
         <Form.Text className="text-muted">
           This will not be persisted on-chain but in my very centralized
-          database on-chain
+          database
         </Form.Text>
       </Form.Group>
       <Button
@@ -324,10 +331,14 @@ function EthPotApp() {
   );
 }
 
-function FiatPot() {
+type FiatPotProps = {
+  fiatOnly: boolean;
+};
+
+function FiatPot({ fiatOnly }: FiatPotProps) {
   return (
     <div className="pot text-center">
-      <div>Fiat</div>
+      <p>{I18n.t("pot.fiat_text")}</p>
     </div>
   );
 }
@@ -343,7 +354,7 @@ function PotContainer() {
         <EthPotApp />
       </Tab>
       <Tab className="py-3" eventKey="fiat" title="Fiat Pot">
-        <FiatPot />
+        <FiatPot fiatOnly={false} />
       </Tab>
     </Tabs>
   );
@@ -355,9 +366,11 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
+  I18n.locale = window.locale;
+
   if (window.ethereum) {
     ReactDOM.render(<PotContainer />, node);
   } else {
-    ReactDOM.render(<FiatPot />, node);
+    ReactDOM.render(<FiatPot fiatOnly={true} />, node);
   }
 });

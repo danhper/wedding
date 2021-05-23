@@ -5,6 +5,8 @@ en:
 
   pot:
     title: Wedding Pot
+    fiat_text: |
+      We are organising a wedding pot, we hope that you can contribute a little.
 
   townhall:
     text: The official ceremony will be held in Paris' 15th arrondissement townhall

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Button, Form, Tab, Tabs } from "react-bootstrap";
+import { Button, Form, Spinner, Tab, Tabs } from "react-bootstrap";
 import ReactDOM from "react-dom";
 import Web3Modal from "web3modal";
 
@@ -55,10 +55,13 @@ function SendTokenForm() {
   const eth = supportedTokens[0];
   const [selected, setSelected] = useState(eth.symbol);
   const [tokenAddress, setTokenAddress] = useState(eth.address);
+  const [message, setMessage] = useState("");
   const [rawValue, setRawValue] = useState("");
   const [addressError, setAddressError] = useState("");
   const [valueError, setValueError] = useState("");
   const [decimals, setDecimals] = useState(18);
+  const [loading, setLoading] = useState(false);
+  const [done, setDone] = useState(false);
   const provider = useEthers();
 
   const fetchDecimals = async (address: string) => {
@@ -132,11 +135,24 @@ function SendTokenForm() {
     }
 
     const value = ethers.utils.parseUnits(rawValue, decimals);
+    setLoading(true);
+    let txp;
     if (tokenAddress === eth.address) {
-      provider.sendTransaction({ to: beneficiary, value });
+      txp = provider.sendTransaction({ to: beneficiary, value });
     } else {
       const ercContract = new ethers.Contract(tokenAddress, erc20ABI, provider);
-      ercContract.transfer(beneficiary, value);
+      txp = ercContract.transfer(beneficiary, value);
+    }
+    try {
+      const tx = await txp;
+      await tx.wait();
+      setRawValue("");
+      setMessage("");
+      setDone(true);
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -160,7 +176,6 @@ function SendTokenForm() {
           <option value="other">Something else?</option>
         </Form.Control>
       </Form.Group>
-
       {selected === "other" ? (
         <Form.Group className="mb-3" controlId="tokenAddress">
           <Form.Label>Token address</Form.Label>
@@ -176,13 +191,11 @@ function SendTokenForm() {
           </Form.Control.Feedback>
         </Form.Group>
       ) : null}
-
       {isLowPricedToken ? (
         <div className="row">
           <img src={Minus99FrogImage} alt="nooooooooo" />
         </div>
       ) : null}
-
       <Form.Group className="mb-3" controlId="amount">
         <Form.Label>Amount to send</Form.Label>
         <Form.Control
@@ -196,11 +209,12 @@ function SendTokenForm() {
           {valueError}
         </Form.Control.Feedback>
       </Form.Group>
-
       <Form.Group className="mb-3" controlId="message">
         <Form.Label>Message</Form.Label>
         <Form.Control
           as="textarea"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
           rows={4}
           placeholder="Your (preferably nice) messsage"
         />
@@ -209,9 +223,16 @@ function SendTokenForm() {
           database on-chain
         </Form.Text>
       </Form.Group>
-      <Button disabled={!isFormValid()} variant="primary" type="submit">
-        Send
-      </Button>
+      <Button
+        disabled={!isFormValid() || loading}
+        variant="primary"
+        type="submit"
+      >
+        {loading ? <Spinner animation="border" size="sm" /> : "Send"}
+      </Button>{" "}
+      {done && !loading ? (
+        <span className="text-success">Thank you!!</span>
+      ) : null}
     </Form>
   );
 }

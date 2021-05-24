@@ -45,18 +45,21 @@ function persistMessage(message: Message) {
     token: window.userToken,
     message,
   };
-
-  Rails.ajax({
-    url: "/messages",
-    type: "POST",
-    data: data,
-    beforeSend(xhr, options) {
-      xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
-      // Workaround: add options.data late to avoid Content-Type header to already being set in stone
-      // https://github.com/rails/rails/blob/master/actionview/app/assets/javascripts/rails-ujs/utils/ajax.coffee#L53
-      options.data = JSON.stringify(data);
-      return true;
-    },
+  return new Promise((resolve, reject) => {
+    Rails.ajax({
+      url: "/messages",
+      type: "POST",
+      data: data as any,
+      beforeSend(xhr, options) {
+        xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+        // Workaround: add options.data late to avoid Content-Type header to already being set in stone
+        // https://github.com/rails/rails/blob/master/actionview/app/assets/javascripts/rails-ujs/utils/ajax.coffee#L53
+        options.data = JSON.stringify(data);
+        return true;
+      },
+      success: resolve,
+      error: reject,
+    });
   });
 }
 
@@ -171,7 +174,7 @@ function SendTokenForm() {
 
     const value = ethers.utils.parseUnits(rawValue, decimals);
     setLoading(true);
-    let txp;
+    let txp: Promise<ethers.providers.TransactionResponse>;
     if (tokenAddress === eth.address) {
       txp = provider.sendTransaction({ to: beneficiary, value });
     } else {
@@ -180,6 +183,10 @@ function SendTokenForm() {
     }
     try {
       const tx = await txp;
+      await persistMessage({
+        message,
+        tx_hash: tx.hash,
+      });
       await tx.wait();
       setRawValue("");
       setMessage("");

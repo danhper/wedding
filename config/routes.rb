@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     resources :users do
       post :send_invitation, on: :member
     end
+    resources :messages
 
     root to: 'users#index'
   end

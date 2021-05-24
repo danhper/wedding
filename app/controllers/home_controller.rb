@@ -24,11 +24,6 @@ class HomeController < ApplicationController
 
   private
 
-  def require_login
-    @user = User.find_by(token: params[:token])
-    raise User::NotAuthorized, 'user not found' if @user.nil?
-  end
-
   def switch_locale(&action)
     I18n.with_locale(@user.language, &action)
   end

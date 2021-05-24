@@ -8,7 +8,7 @@
 <section class="py-3">
   <div class="container my-3">
     <div class="row justify-content-center">
-      <div class="fit-content">
+      <div class="fit-content" style="max-width: max-content;">
         <h2 class="text-center"><%= @user.greeting %></h2>
         <div class="fs-5"><%= simple_format @user.text %></div>
         <p class="text-center">Ai &amp; Daniel</p>
@@ -63,6 +63,15 @@
 </section>
 
 <section class="mx-5 mt-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <h2 class="text-center">&#129689; <%= t "pot.title" %> &#129689;</h2>
+      <div id="pot"></div>
+    </div>
+  </div>
+</section>
+
+<section class="mx-5 mt-5">
   <div class="photo-carousel glide text-center">
     <div class="glide__track" data-glide-el="track">
       <ul class="glide__slides">
@@ -77,6 +86,7 @@
     </div>
   </div>
 </section>
+
 <footer class="footer mt-auto py-3">
   <div class="container text-center">
     <span class="text-muted">
@@ -84,6 +94,7 @@
     </span>
   </div>
 </footer>
+
 <script>
   window.addEventListener("load", function () {
       new Glide('.glide', {

@@ -7,6 +7,16 @@ fr:
   party:
     text: La fête sera célébré au Vauban, un restaurant un côté des Invalides que nous apprécions beaucoup.
 
+  pot:
+    title: Cagnotte de Mariage
+    text: |
+      Nous organisons une cagnotte de mariage. On espère que tu pourras participer un peu.
+    fiat_crypto: |
+      Si ça te parle, nous acceptons aussi ETH ou n'importe quelle autre monnaie sur Ethereum,
+      envoie ça à cette adresse:
+    paypal: |
+      Notre cagnotte est sur Paypal, utilise le lien ci-dessous et suis les instructions.
+
   attendance:
     question: Est-ce que tu viens?
     "yes": Bien sûr

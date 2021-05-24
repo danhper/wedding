@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   root to: 'home#index'
   post '/attendance', to: 'home#set_attendance'
   resources :messages, only: %i[create]
+
+  match '/404', to: 'application#not_found', via: :all, as: 'not_found'
 end

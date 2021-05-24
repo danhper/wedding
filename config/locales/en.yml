@@ -62,6 +62,16 @@ en:
   footer: by Ai & Daniel, with a lot of ❤️
 
   errors:
+    not_found:
+      title: Page not found
+      text: |
+        Hi there,
+
+        This page does not seem to exist. Please check your email for the direct link.
+
+        Best,
+        Ai &amp; Daniel
+
     unauthorized:
       title: Not authorized
       text: |

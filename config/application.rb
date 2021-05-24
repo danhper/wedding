@@ -20,5 +20,6 @@ module Wedding
     # config.eager_load_paths << Rails.root.join("extras")
 
     # config.asset_host = 'https://perezmiyuki.wedding'
+    config.exceptions_app = self.routes
   end
 end

@@ -2,6 +2,10 @@ class ApplicationController < ActionController::Base
   rescue_from StandardError, with: :unexpected_error if Rails.env.production?
   rescue_from User::NotAuthorized, with: :deny_access
 
+  def not_found
+    render_error 'not_found', status: :not_found
+  end
+
   protected
 
   def deny_access(_exception)

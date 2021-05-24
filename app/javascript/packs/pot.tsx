@@ -348,7 +348,7 @@ function EthPotApp() {
     <>
       {!provider ? (
         <ConnectButton handleConnect={handleConnect} />
-      ) : mainNet || true ? (
+      ) : mainNet ? (
         <EthersContext.Provider
           value={new ethers.providers.Web3Provider(provider).getSigner()}
         >

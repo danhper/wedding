@@ -6,6 +6,10 @@ class ApplicationController < ActionController::Base
     render_error 'not_found', status: :not_found
   end
 
+  def internal_error
+    render_error 'unexpected', status: :internal_server_error
+  end
+
   protected
 
   def deny_access(_exception)

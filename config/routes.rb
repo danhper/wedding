@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   resources :messages, only: %i[create]
 
   match '/404', to: 'application#not_found', via: :all, as: 'not_found'
+  match '/500', to: 'application#internal_error', via: :all, as: 'internal_error'
 end

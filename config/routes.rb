@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   end
   root to: 'home#index'
   post '/attendance', to: 'home#set_attendance'
+  resources :messages, only: %i[create]
 end

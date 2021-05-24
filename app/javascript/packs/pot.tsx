@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Button, Form, Spinner, Tab, Tabs } from "react-bootstrap";
 import ReactDOM from "react-dom";
 import Web3Modal from "web3modal";
+import Rails from "@rails/ujs";
 import I18n from "i18n-js/index.js.erb";
 
 import erc20ABI from "./erc20.abi.json";
@@ -15,6 +16,7 @@ import { ethers } from "ethers";
 declare global {
   interface Window {
     locale: string;
+    userToken: string;
   }
 }
 
@@ -33,11 +35,37 @@ const supportedTokens = [
   { symbol: "BAL", address: "0xba100000625a3754423978a60c9317c58a424e3D" },
 ];
 
+interface Message {
+  tx_hash: string;
+  message: string;
+}
+
+function persistMessage(message: Message) {
+  const data = {
+    token: window.userToken,
+    message,
+  };
+
+  Rails.ajax({
+    url: "/messages",
+    type: "POST",
+    data: data,
+    beforeSend(xhr, options) {
+      xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+      // Workaround: add options.data late to avoid Content-Type header to already being set in stone
+      // https://github.com/rails/rails/blob/master/actionview/app/assets/javascripts/rails-ujs/utils/ajax.coffee#L53
+      options.data = JSON.stringify(data);
+      return true;
+    },
+  });
+}
+
 function Beneficiary() {
   return (
     <a
       className="font-monospace"
       href={`https://etherscan.io/address/${beneficiary}`}
+      target="_blank"
     >
       {beneficiary}
     </a>
@@ -313,7 +341,7 @@ function EthPotApp() {
     <>
       {!provider ? (
         <ConnectButton handleConnect={handleConnect} />
-      ) : mainNet ? (
+      ) : mainNet || true ? (
         <EthersContext.Provider
           value={new ethers.providers.Web3Provider(provider).getSigner()}
         >
@@ -336,14 +364,28 @@ type FiatPotProps = {
 };
 
 function FiatPot({ fiatOnly }: FiatPotProps) {
+  const CryptoInstructions = () => (
+    <p className="mt-3">
+      {I18n.t("pot.fiat_crypto")}
+      <Beneficiary />
+    </p>
+  );
   return (
-    <div className="pot text-center">
-      <p>{I18n.t("pot.fiat_text")}</p>
+    <div className="text-center">
+      <p>{I18n.t("pot.paypal")}</p>
+      <a
+        className="btn btn-primary"
+        href="https://paypal.me/pools/c/8zH4OmYbHn"
+        target="_blank"
+      >
+        {I18n.t("pot.title")}
+      </a>
+      {fiatOnly ? <CryptoInstructions /> : null}
     </div>
   );
 }
 
-function PotContainer() {
+function EthPotContainer() {
   return (
     <Tabs
       className="justify-content-center"
@@ -360,6 +402,16 @@ function PotContainer() {
   );
 }
 
+function Pot() {
+  const hasMetamask = !!window.ethereum;
+  return (
+    <div className="pot">
+      <p className="text-center">{I18n.t("pot.text")}</p>
+      {hasMetamask ? <EthPotContainer /> : <FiatPot fiatOnly={true} />}
+    </div>
+  );
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const node = document.getElementById("pot");
   if (!node) {
@@ -368,9 +420,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
   I18n.locale = window.locale;
 
-  if (window.ethereum) {
-    ReactDOM.render(<PotContainer />, node);
-  } else {
-    ReactDOM.render(<FiatPot fiatOnly={true} />, node);
-  }
+  ReactDOM.render(<Pot />, node);
 });

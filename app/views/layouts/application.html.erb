@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.2.0/css/glide.theme.min.css" integrity="sha512-wCwx+DYp8LDIaTem/rpXubV/C1WiNRsEVqoztV0NZm8tiTvsUeSlA/Uz02VTGSiqfzAHD4RnqVoevMcRZgYEcQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <%= javascript_tag do %>
       window.locale = "<%= I18n.locale %>";
+      <% if @user %>
+        window.userToken = "<%= @user.token %>";
+      <% end %>
     <% end %>
     <%= javascript_pack_tag "application", 'data-turbolinks-track': "reload" %>
   </head>

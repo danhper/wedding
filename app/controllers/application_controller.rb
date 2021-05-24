@@ -16,4 +16,9 @@ class ApplicationController < ActionController::Base
     @error = error
     render 'errors/error', status: status
   end
+
+  def require_login
+    @user = User.find_by(token: params[:token])
+    raise User::NotAuthorized, 'user not found' if @user.nil?
+  end
 end

@@ -2,6 +2,8 @@ class User < ApplicationRecord
   enum language: %i[en ja fr de fr_polite]
   enum attendance: %i[pending absent present]
 
+  has_many :messages
+
   before_save do
     self.token = generate_token if token.nil?
     self.email_text = email_text.gsub(/%{token}/, token)

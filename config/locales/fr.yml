@@ -2,10 +2,16 @@ fr:
   info:
     date: "17 Juin 2021"
     title: "Mariage de Ai & Daniel"
+
   townhall:
+    title: Mairie du 15ème
     text: La cerémonie officielle sera célébrée à la mairie du 15ème arrondissement.
   party:
+    title: Hôtel Raphael
     text: La fête sera célébré à l'hôtel Raphael, à deux pas de l'Arc de Triomphe
+  after_party:
+    title: Suite de l'Hôtel Raphael
+    text: On fera l'after-party dans une suite du même hôtel !
 
   pot:
     title: Cagnotte de Mariage

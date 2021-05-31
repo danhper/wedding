@@ -66,7 +66,7 @@ function persistMessage(message: Message) {
 function Beneficiary() {
   return (
     <a
-      className="font-monospace"
+      className="font-monospace text-break"
       href={`https://etherscan.io/address/${beneficiary}`}
       target="_blank"
     >

@@ -15,6 +15,7 @@ class UserDashboard < Administrate::BaseDashboard
     language: Field::Select.with_options(collection: User.languages.keys),
     attendance: Field::Select.with_options(collection: User.attendances.keys),
     townhall: Field::Boolean,
+    after_party: Field::Boolean,
     token: Field::String,
     invite_sent: Field::Boolean,
     greeting: Field::String,
@@ -36,6 +37,8 @@ class UserDashboard < Administrate::BaseDashboard
     last_name
     email
     invite_sent
+    townhall
+    after_party
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -48,6 +51,7 @@ class UserDashboard < Administrate::BaseDashboard
     language
     attendance
     townhall
+    after_party
     token
     invite_sent
     greeting
@@ -66,6 +70,7 @@ class UserDashboard < Administrate::BaseDashboard
     last_name
     language
     townhall
+    after_party
     attendance
     email
     greeting

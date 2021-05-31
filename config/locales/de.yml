@@ -14,9 +14,14 @@ de:
       Unser Hochzeitsfond ist auf Paypal, bitte beutze diesen Link:
 
   townhall:
+    title: Mairie du 15ème
     text: Die offiziale Hochzeitszeremonie findet im Rathaus des 15. Bezirks von Paris statt
   party:
+    title: Hôtel Raphael
     text: Am Abend werden wir eine Party im Hôtel Raphael, neben dem Arc de Triomphe, machen
+  after_party:
+    title: Suite im Hôtel Raphael
+    text: Die Afterparty findet in einer Suite des gleichen Hotel statt
 
   attendance:
     question: Kommst du?

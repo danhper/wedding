@@ -5,8 +5,15 @@
 .bg-image-full {
   background-repeat: no-repeat;
   background-attachment: scroll;
-  background-position: center;
+  background-position: bottom left;
   background-size: cover;
+  min-height: 400px;
+  @media (max-width: 1024px) {
+    min-height: 350px;
+  }
+  @media (max-width: 768px) {
+    min-height: 250px;
+  }
 }
 
 .photo-carousel {

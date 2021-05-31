@@ -1,7 +1,10 @@
-<header class="py-3 bg-image-full" style="background-image: url('<%= image_path("banner.jpg") %>');">
-  <div class="text-center my-5">
+<header
+  class="py-3 bg-image-full"
+  style="background-image: url('<%= image_path("banner-drawing2.png") %>');"
+>
+  <div class="text-center mt-3 mb-5">
     <h1 class="text-white fw-border display-4">
-      <%= t "info.title" %> &#128146;
+      <%= t "info.title" %>
     </h1>
   </div>
 </header>
@@ -21,12 +24,16 @@
   <div class="container my-1">
     <div class="row justify-content-center">
       <div class="col-lg-8">
-        <h2 class="text-center">&#127881; <%= t "info.date" %> &#127881;</h2>
+        <h2 class="text-center">💒 <%= t "info.date" %> 💒</h2>
         <% if @user.townhall %>
           <%= render "event_card", event: @events[:townhall] %>
         <% end %>
 
         <%= render "event_card", event: @events[:party] %>
+
+        <% if @user.after_party %>
+          <%= render "event_card", event: @events[:after_party] %>
+        <% end %>
 
         <div class="attendance mt-5">
 

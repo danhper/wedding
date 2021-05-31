@@ -3,8 +3,10 @@ fr_polite:
     date: "17 Juin 2021"
     title: "Mariage de Ai & Daniel"
   townhall:
+    title: Mairie du 15ème
     text: La cérémonie officielle sera célébrée à la mairie du 15ème arrondissement.
   party:
+    title: Hôtel Raphael
     text: La fête sera célébrée à l'hôtel Raphael, à deux pas des Champs-Elysées
 
   pot:

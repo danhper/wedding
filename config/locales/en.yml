@@ -14,9 +14,14 @@ en:
       Our pot is on Paypal, please use the link below and follow the instructions there.
 
   townhall:
+    title: Mairie du 15ème
     text: The official ceremony will be held in Paris' 15th arrondissement townhall
   party:
+    title: Hôtel Raphael
     text: We will have a cocktail party at the Hôtel Raphael, near the Champs-Elysées.
+  after_party:
+    title: Suite in Hôtel Raphael
+    text: The after party will take place in a suite of the same hotel!
 
   invitation:
     text: |

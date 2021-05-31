@@ -4,6 +4,8 @@ class User < ApplicationRecord
 
   has_many :messages
 
+  scope :invite_not_sent, -> { where(invite_sent: false) }
+
   before_save do
     self.token = generate_token if token.nil?
     self.email_text = email_text.gsub(/%{token}/, token)

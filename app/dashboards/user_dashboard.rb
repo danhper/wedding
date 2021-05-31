@@ -84,7 +84,9 @@ class UserDashboard < Administrate::BaseDashboard
   #   COLLECTION_FILTERS = {
   #     open: ->(resources) { resources.where(open: true) }
   #   }.freeze
-  COLLECTION_FILTERS = {}.freeze
+  COLLECTION_FILTERS = {
+    invite_not_sent: ->(resources) { resources.invite_not_sent }
+  }.freeze
 
   # Overwrite this method to customize how users are displayed
   # across all pages of the admin dashboard.

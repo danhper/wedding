@@ -3,24 +3,24 @@ fr_polite:
     date: "17 Juin 2021"
     title: "Mariage de Ai & Daniel"
   townhall:
-    text: La cerémonie officielle sera célébrée à la mairie du 15ème arrondissement.
+    text: La cérémonie officielle sera célébrée à la mairie du 15ème arrondissement.
   party:
-    text: La fête sera célébré au Vauban, un restaurant un côté des Invalides que nous apprécions beaucoup.
+    text: La fête sera célébrée à l'hôtel Raphael, à deux pas des Champs-Elysées
 
   pot:
     title: Cagnotte de Mariage
     text: |
       Nous organisons une cagnotte de mariage et espérons que vous pourrez contribuer un peu.
     fiat_crypto: |
-      Si cela vous parle, nous acceptons aussi ETH ou n'importe quelle autre monnaie sur Ethereum,
+      Pour les adeptes de la cryptomonnaie, nous acceptons aussi ETH ou n'importe quelle autre monnaie sur Ethereum,
       à l'adresse suivante:
     paypal: |
       Notre cagnotte est sur Paypal, utilisez le lien ci-dessous et suivez les instructions.
 
   attendance:
     question: Serez-vous présent ?
-    "yes": J'y serai
-    "no": Je ne peux pas
+    "yes": Oui
+    "no": Non
     confirm_yes: Vous confirmez votre présence ?
     confirm_no: Vous confirmez que vous ne pourrez pas venir ?
 
@@ -34,27 +34,27 @@ fr_polite:
 
   invitation:
     text: |
-      Nous avons le plaisir de vous inviter à notre cérémonie de mariage ayant lieu
+      Nous avons le plaisir de vous inviter à notre cérémonie de mariage qui aura lieu
       le 17 juin 2021.
       Malgré le délai relativement court, nous espérons que vous pourrez vous
       joindre à nous pour fêter cet hereux évènement.
 
-      Dans l'attente de vous voir,
+      Dans l'attente du plaisir vous voir,
 
   email:
     invitation:
       subject: Mariage de Ai Miyuki & Daniel Perez
       text: |
-        Nous aimerions vous convier à notre mariage ayant lieu le 17 juin à Paris.
-        Nous espérons que nous pourrons partager ce moment avec vous.
+        Nous avons le plaisir de vous convier à notre fête de mariage qui aura lieu le 17 juin à Paris.
 
-        Vous trouverez toutes les informations nécessaires sur le site ci-dessous.
-        Nous vous prions de nous confirmer votre présence depuis ce même site avant le 4 juin.
+        Vous trouverez toutes les informations nécessaires sur le site ci-dessous:
 
-        <a href="https://perezmiyuki.wedding/?token=%{token}" target="_blank">https://perezmiyuki.wedding/?token=%{token}</a>
+        https://perezmiyuki.wedding/?token=%{token}
 
-        En espérant vous voir le 17 juin,
+        Nous vous prions de nous confirmer votre présence depuis ce même site avant le 7 juin.
 
-        Ai & Daniel
+        En espérant vous voir le 17 juin.
+
+        Ai Miyuki & Daniel Perez
 
   footer: par Ai & Daniel, avec ❤️

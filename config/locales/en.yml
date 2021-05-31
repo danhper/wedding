@@ -8,7 +8,7 @@ en:
     fiat_text: |
       We are organising a wedding pot, we hope that you can contribute a little.
     fiat_crypto: |
-      If it means anything to you, we are also fine with ETH or any other asset on Ethereum.
+      If you prefer, we also accept ETH or any other asset on Ethereum.
       Simply send it to this address:
     paypal: |
       Our pot is on Paypal, please use the link below and follow the instructions there.
@@ -16,7 +16,7 @@ en:
   townhall:
     text: The official ceremony will be held in Paris' 15th arrondissement townhall
   party:
-    text: We will have an informal party at Le Vauban, a great restaurant close to Les Invalides that my family loves
+    text: We will have a cocktail party at the Hôtel Raphael, near the Champs-Elysées.
 
   invitation:
     text: |
@@ -52,7 +52,7 @@ en:
         We would be grateful if you could confirm your attendance from the following
         website, where you will also find the details of the event.
 
-        <a href="https://perezmiyuki.wedding/?token=%{token}" target="_blank">https://perezmiyuki.wedding/?token=%{token}</a>
+        https://perezmiyuki.wedding/?token=%{token}
 
         We hope to see you there!
 

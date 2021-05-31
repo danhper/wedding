@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   end
 
   def internal_error
-    render_error 'unexpected', status: :internal_server_error
+    render_internal_error
   end
 
   protected
@@ -16,7 +16,12 @@ class ApplicationController < ActionController::Base
     render_error 'unauthorized', status: :unauthorized
   end
 
-  def unexpected_error(_exception)
+  def unexpected_error(exception)
+    Rollbar.error(exception)
+    render_internal_error
+  end
+
+  def render_internal_error
     render_error 'unexpected', status: :internal_server_error
   end
 
@@ -28,5 +33,9 @@ class ApplicationController < ActionController::Base
   def require_login
     @user = User.find_by(token: params[:token])
     raise User::NotAuthorized, 'user not found' if @user.nil?
+  end
+
+  def current_user
+    @user
   end
 end

@@ -45,16 +45,16 @@ fr_polite:
     invitation:
       subject: Mariage de Ai Miyuki & Daniel Perez
       text: |
-        Nous avons le plaisir de vous convier à notre fête de mariage qui aura lieu le 17 juin à Paris.
+        J'ai le plaisir de te convier à la cérémonie de mariage de mon fils Daniel Perez avec Mademoiselle Ai Miyuki qui aura lieu le 17 juin 2021.
 
-        Vous trouverez toutes les informations nécessaires sur le site ci-dessous:
+        Tu trouveras toutes les informations nécessaires sur le site ci-dessous:
 
         https://perezmiyuki.wedding/?token=%{token}
 
-        Nous vous prions de nous confirmer votre présence depuis ce même site avant le 7 juin.
+        Je te remercie de confirmer votre présence depuis ce même site avant le 5 juin.
 
         En espérant vous voir le 17 juin.
 
-        Ai Miyuki & Daniel Perez
+        Liliane
 
   footer: par Ai & Daniel, avec ❤️

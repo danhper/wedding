@@ -11,7 +11,7 @@ fr_polite:
 
   pot:
     title: Cagnotte de Mariage
-    text: |
+    fiat_text: |
       Nous organisons une cagnotte de mariage et espérons que vous pourrez contribuer un peu.
     fiat_crypto: |
       Pour les adeptes de la cryptomonnaie, nous acceptons aussi ETH ou n'importe quelle autre monnaie sur Ethereum,

@@ -340,9 +340,23 @@ function EthPotApp() {
     setMainNet(provider.chainId === "0x1" || provider.chainId === 1);
   };
 
-  if (web3Modal.cachedProvider) {
-    handleConnect();
-  }
+  const shouldConnect = async () => {
+    if (!web3Modal.cachedProvider) {
+      return false;
+    }
+    if (
+      window.ethereum &&
+      window.ethereum._metamask &&
+      window.ethereum._metamask.isUnlocked
+    ) {
+      return window.ethereum._metamask.isUnlocked();
+    }
+    return true;
+  };
+
+  shouldConnect().then((result) => {
+    if (result) handleConnect();
+  });
 
   return (
     <>

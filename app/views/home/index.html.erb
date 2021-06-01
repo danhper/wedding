@@ -49,8 +49,8 @@
               <% end %>
 
               <%= form_with(url: attendance_path, method: :post, class: "d-inline-block") do |f| %>
-                <%= f.hidden_field(:token, value: @user.token) %>
-                <%= f.hidden_field(:attendance, value: "absent") %>
+                <%= f.hidden_field(:token, value: @user.token, id: "absent-token") %>
+                <%= f.hidden_field(:attendance, value: "absent", id: "absent-attendance") %>
                 <%= f.submit t('attendance.no'), class: "d-inline-block btn btn-outline-secondary", data: { confirm: t('attendance.confirm_no') } %>
               <% end %>
             </div>

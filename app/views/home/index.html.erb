@@ -51,19 +51,19 @@
 <div class="attendance mt-5">
   <% case @user.attendance %>
   <% when "pending" %>
-  <h3 class="text-center mt-3"><%= t "attendance.question" %></h2>
+  <h2 class="text-center mt-3 mb-3 display-5"><%= t "attendance.question" %></h2>
   <div class="row justify-content-center">
     <div class="fit-content">
       <%= form_with(url: attendance_path, method: :post, class: "d-inline-block") do |f| %>
         <%= f.hidden_field(:token, value: @user.token) %>
         <%= f.hidden_field(:attendance, value: "present") %>
-        <%= f.submit t('attendance.yes'), class: "btn btn-outline-success d-inline-block mx-3", data: { confirm: t('attendance.confirm_yes') } %>
+        <%= f.submit t('attendance.yes'), class: "btn btn-lg btn-outline-success d-inline-block mx-3", data: { confirm: t('attendance.confirm_yes') } %>
       <% end %>
 
       <%= form_with(url: attendance_path, method: :post, class: "d-inline-block") do |f| %>
         <%= f.hidden_field(:token, value: @user.token, id: "absent-token") %>
         <%= f.hidden_field(:attendance, value: "absent", id: "absent-attendance") %>
-        <%= f.submit t('attendance.no'), class: "d-inline-block btn btn-outline-secondary", data: { confirm: t('attendance.confirm_no') } %>
+        <%= f.submit t('attendance.no'), class: "d-inline-block btn btn-lg btn-outline-secondary", data: { confirm: t('attendance.confirm_no') } %>
       <% end %>
     </div>
   </div>

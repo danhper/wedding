@@ -413,7 +413,7 @@ function Pot() {
   const hasMetamask = !!window.ethereum;
   return (
     <div className="pot">
-      <p className="text-center">{I18n.t("pot.text")}</p>
+      <p className="text-center">{I18n.t("pot.fiat_text")}</p>
       {hasMetamask ? <EthPotContainer /> : <FiatPot fiatOnly={true} />}
     </div>
   );

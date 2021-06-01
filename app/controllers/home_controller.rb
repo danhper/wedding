@@ -4,13 +4,13 @@ class HomeController < ApplicationController
 
   def index
     @events = {
-      townhall: Event.new(location: 'Mairie du 15ème', start_time: '15:40', end_time: '16:00',
+      townhall: Event.new(location_key: 'townhall.title', start_time: '15:40', end_time: '16:00',
                           text_key: 'townhall.text', image: 'mairie.jpg', address: '31 Rue Peclet, 75015 Paris',
                           map_url: 'https://goo.gl/maps/CjDdYubCeWa24vtZ7'),
-      party: Event.new(location: 'Hôtel Raphael', start_time: '18:00', end_time: '22:00',
+      party: Event.new(location_key: 'party.title', start_time: '18:00', end_time: '22:00',
                        text_key: 'party.text', image: 'hotel-raphael.jpg', address: '17 Avenue Kléber, 75116 Paris',
                        map_url: 'https://goo.gl/maps/oQ7cDkUfZMWJJrDK7'),
-      after_party: Event.new(location: 'Suite in Hôtel Raphael', start_time: '22:00', end_time: '😵',
+      after_party: Event.new(location_key: 'party.title', start_time: '22:00', end_time: '😵',
                              text_key: 'after_party.text', image: 'hotel-raphael-suite.jpg', address: '17 Avenue Kléber, 75116 Paris',
                              map_url: 'https://goo.gl/maps/oQ7cDkUfZMWJJrDK7')
     }

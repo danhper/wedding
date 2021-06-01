@@ -1,8 +1,9 @@
 class Event
-  attr_accessor :location, :start_time, :end_time, :text_key, :image, :address, :map_url
+  attr_accessor :location_key, :start_time, :end_time, :text_key, :image, :address, :map_url
 
-  def initialize(location:, start_time:, end_time:, text_key:, image:, address:, map_url:)
-    @location = location
+  def initialize(location_key:, start_time:, end_time:,
+                 text_key:, image:, address:, map_url:)
+    @location_key = location_key
     @start_time = start_time
     @end_time = end_time
     @text_key = text_key

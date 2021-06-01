@@ -39,6 +39,7 @@ class UserDashboard < Administrate::BaseDashboard
     invite_sent
     townhall
     after_party
+    attendance
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES

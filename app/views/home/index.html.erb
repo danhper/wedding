@@ -34,40 +34,9 @@
         <% if @user.after_party %>
           <%= render "event_card", event: @events[:after_party] %>
         <% end %>
-
-        <div class="attendance mt-5">
-
-          <% case @user.attendance %>
-          <% when "pending" %>
-          <h3 class="text-center mt-3"><%= t "attendance.question" %></h2>
-          <div class="row justify-content-center">
-            <div class="fit-content">
-              <%= form_with(url: attendance_path, method: :post, class: "d-inline-block") do |f| %>
-                <%= f.hidden_field(:token, value: @user.token) %>
-                <%= f.hidden_field(:attendance, value: "present") %>
-                <%= f.submit t('attendance.yes'), class: "btn btn-outline-success d-inline-block mx-3", data: { confirm: t('attendance.confirm_yes') } %>
-              <% end %>
-
-              <%= form_with(url: attendance_path, method: :post, class: "d-inline-block") do |f| %>
-                <%= f.hidden_field(:token, value: @user.token, id: "absent-token") %>
-                <%= f.hidden_field(:attendance, value: "absent", id: "absent-attendance") %>
-                <%= f.submit t('attendance.no'), class: "d-inline-block btn btn-outline-secondary", data: { confirm: t('attendance.confirm_no') } %>
-              <% end %>
-            </div>
-          </div>
-          <% when "absent" %>
-          <h4 class="text-center mt-5 font-size-lg">
-            <%= simple_format t("attendance.absent") %>
-          </h4>
-          <% when "present" %>
-          <h4 class="text-center mt-3 font-size-lg">
-            <%= simple_format t("attendance.present") %>
-          </h4>
-        <% end %>
       </div>
     </div>
   </div>
-</div>
 </section>
 
 <section class="mx-5 mt-5">
@@ -78,6 +47,36 @@
     </div>
   </div>
 </section>
+
+<div class="attendance mt-5">
+  <% case @user.attendance %>
+  <% when "pending" %>
+  <h3 class="text-center mt-3"><%= t "attendance.question" %></h2>
+  <div class="row justify-content-center">
+    <div class="fit-content">
+      <%= form_with(url: attendance_path, method: :post, class: "d-inline-block") do |f| %>
+        <%= f.hidden_field(:token, value: @user.token) %>
+        <%= f.hidden_field(:attendance, value: "present") %>
+        <%= f.submit t('attendance.yes'), class: "btn btn-outline-success d-inline-block mx-3", data: { confirm: t('attendance.confirm_yes') } %>
+      <% end %>
+
+      <%= form_with(url: attendance_path, method: :post, class: "d-inline-block") do |f| %>
+        <%= f.hidden_field(:token, value: @user.token, id: "absent-token") %>
+        <%= f.hidden_field(:attendance, value: "absent", id: "absent-attendance") %>
+        <%= f.submit t('attendance.no'), class: "d-inline-block btn btn-outline-secondary", data: { confirm: t('attendance.confirm_no') } %>
+      <% end %>
+    </div>
+  </div>
+  <% when "absent" %>
+  <h4 class="text-center mt-5 font-size-lg">
+    <%= simple_format t("attendance.absent") %>
+  </h4>
+  <% when "present" %>
+  <h4 class="text-center mt-3 font-size-lg">
+    <%= simple_format t("attendance.present") %>
+  </h4>
+<% end %>
+</div>
 
 <section class="mx-5 mt-5">
   <div class="photo-carousel glide text-center">

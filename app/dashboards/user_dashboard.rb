@@ -41,6 +41,7 @@ class UserDashboard < Administrate::BaseDashboard
     townhall
     after_party
     attendance
+    easter_egg_ranking
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES

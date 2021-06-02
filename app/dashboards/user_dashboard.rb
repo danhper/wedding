@@ -17,6 +17,7 @@ class UserDashboard < Administrate::BaseDashboard
     townhall: Field::Boolean,
     after_party: Field::Boolean,
     token: Field::String,
+    easter_egg_ranking: Field::Number,
     invite_sent: Field::Boolean,
     greeting: Field::String,
     text: Field::Text,
@@ -59,6 +60,7 @@ class UserDashboard < Administrate::BaseDashboard
     text
     email_subject
     email_text
+    easter_egg_ranking
     created_at
     updated_at
   ].freeze
@@ -78,6 +80,7 @@ class UserDashboard < Administrate::BaseDashboard
     text
     email_subject
     email_text
+    easter_egg_ranking
   ].freeze
 
   # COLLECTION_FILTERS

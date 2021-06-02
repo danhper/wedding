@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   end
   root to: 'home#index'
   post '/attendance', to: 'home#set_attendance'
+
+  post '/users/easter-egg', to: 'users#easter_egg'
+
   resources :messages, only: %i[create]
 
   match '/404', to: 'application#not_found', via: :all, as: 'not_found'

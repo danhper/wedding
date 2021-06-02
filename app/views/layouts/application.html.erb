@@ -15,6 +15,7 @@
       window.locale = "<%= I18n.locale %>";
       <% if @user %>
         window.userToken = "<%= @user.token %>";
+        window.easterEggRanking = <%= @user.easter_egg_ranking || 0 %>;
       <% end %>
     <% end %>
     <%= javascript_pack_tag "application", 'data-turbolinks-track': "reload" %>

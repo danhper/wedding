@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :messages
 
   scope :invite_not_sent, -> { where(invite_sent: false) }
+  scope :found_easter_egg, -> { where.not(easter_egg_ranking: nil) }
 
   before_save do
     self.token = generate_token if token.nil?

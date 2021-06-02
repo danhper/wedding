@@ -17,6 +17,7 @@ declare global {
   interface Window {
     locale: string;
     userToken: string;
+    easterEggRanking: number;
   }
 }
 
@@ -100,6 +101,9 @@ function SendTokenForm() {
   const [decimals, setDecimals] = useState(18);
   const [loading, setLoading] = useState(false);
   const [done, setDone] = useState(false);
+  const [easterEggRanking, setEasterEggRanking] = useState(
+    window.easterEggRanking
+  );
   const provider = useEthers();
 
   const fetchDecimals = async (address: string) => {
@@ -202,80 +206,99 @@ function SendTokenForm() {
     tokenAddress.toLocaleLowerCase()
   );
 
+  if (isLowPricedToken && !easterEggRanking) {
+    Rails.ajax({
+      url: `/users/easter-egg`,
+      type: "POST",
+      data: `token=${window.userToken}`,
+      success: ({ ranking }) => {
+        setEasterEggRanking(ranking);
+      },
+      // error: reject,
+    });
+  }
+
   return (
-    <Form onSubmit={sendTransaction}>
-      <Form.Group className="mb-3" controlId="currencySelect">
-        <Form.Label>Currency to send</Form.Label>
-        <Form.Control
-          as="select"
-          onChange={(e) => handleCurrencyChange(e.target.value)}
-        >
-          {supportedTokens.map((token) => (
-            <option key={token.symbol} value={token.symbol}>
-              {token.symbol}
-            </option>
-          ))}
-          <option value="other">Something else?</option>
-        </Form.Control>
-      </Form.Group>
-      {selected === "other" ? (
-        <Form.Group className="mb-3" controlId="tokenAddress">
-          <Form.Label>Token address</Form.Label>
+    <>
+      {easterEggRanking > 0 ? (
+        <p className="text-success">
+          You were number {easterEggRanking} to find the egg!!
+        </p>
+      ) : null}
+      <Form onSubmit={sendTransaction}>
+        <Form.Group className="mb-3" controlId="currencySelect">
+          <Form.Label>Currency to send</Form.Label>
           <Form.Control
-            type="text"
-            placeholder="0x1234...."
-            value={tokenAddress}
-            isInvalid={addressError.length > 0}
-            onChange={(e) => handleTokenAddressChange(e.target.value)}
+            as="select"
+            onChange={(e) => handleCurrencyChange(e.target.value)}
+          >
+            {supportedTokens.map((token) => (
+              <option key={token.symbol} value={token.symbol}>
+                {token.symbol}
+              </option>
+            ))}
+            <option value="other">Something else?</option>
+          </Form.Control>
+        </Form.Group>
+        {selected === "other" ? (
+          <Form.Group className="mb-3" controlId="tokenAddress">
+            <Form.Label>Token address</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="0x1234...."
+              value={tokenAddress}
+              isInvalid={addressError.length > 0}
+              onChange={(e) => handleTokenAddressChange(e.target.value)}
+            />
+            <Form.Control.Feedback type="invalid">
+              {addressError}
+            </Form.Control.Feedback>
+          </Form.Group>
+        ) : null}
+        {isLowPricedToken ? (
+          <div className="row">
+            <img src={Minus99FrogImage} alt="nooooooooo" />
+          </div>
+        ) : null}
+        <Form.Group className="mb-3" controlId="amount">
+          <Form.Label>Amount to send</Form.Label>
+          <Form.Control
+            type="number"
+            placeholder="1000000000"
+            value={rawValue}
+            isInvalid={valueError.length > 0}
+            onChange={(e) => handleValueChange(e.target.value)}
           />
           <Form.Control.Feedback type="invalid">
-            {addressError}
+            {valueError}
           </Form.Control.Feedback>
         </Form.Group>
-      ) : null}
-      {isLowPricedToken ? (
-        <div className="row">
-          <img src={Minus99FrogImage} alt="nooooooooo" />
-        </div>
-      ) : null}
-      <Form.Group className="mb-3" controlId="amount">
-        <Form.Label>Amount to send</Form.Label>
-        <Form.Control
-          type="number"
-          placeholder="1000000000"
-          value={rawValue}
-          isInvalid={valueError.length > 0}
-          onChange={(e) => handleValueChange(e.target.value)}
-        />
-        <Form.Control.Feedback type="invalid">
-          {valueError}
-        </Form.Control.Feedback>
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="message">
-        <Form.Label>Message</Form.Label>
-        <Form.Control
-          as="textarea"
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          rows={4}
-          placeholder="If you want, your (preferably nice) messsage"
-        />
-        <Form.Text className="text-muted">
-          This will not be persisted on-chain but in my very centralized
-          database
-        </Form.Text>
-      </Form.Group>
-      <Button
-        disabled={!isFormValid() || loading}
-        variant="primary"
-        type="submit"
-      >
-        {loading ? <Spinner animation="border" size="sm" /> : "Send"}
-      </Button>{" "}
-      {done && !loading ? (
-        <span className="text-success">Thank you!!</span>
-      ) : null}
-    </Form>
+        <Form.Group className="mb-3" controlId="message">
+          <Form.Label>Message</Form.Label>
+          <Form.Control
+            as="textarea"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            rows={4}
+            placeholder="If you want, your (preferably nice) messsage"
+          />
+          <Form.Text className="text-muted">
+            This will not be persisted on-chain but in my very centralized
+            database
+          </Form.Text>
+        </Form.Group>
+        <Button
+          disabled={!isFormValid() || loading}
+          variant="primary"
+          type="submit"
+        >
+          {loading ? <Spinner animation="border" size="sm" /> : "Send"}
+        </Button>{" "}
+        {done && !loading ? (
+          <span className="text-success">Thank you!!</span>
+        ) : null}
+      </Form>
+    </>
   );
 }
 
